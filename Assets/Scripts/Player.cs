@@ -1,16 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//public 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private int m_powerUpIndex = -1;
+    [SerializeField] private PowerUp[] pwrups; 
+    [SerializeField] ManagerPwPlayer mpp;
+    [SerializeField] private Transform m_weaponPosition; 
 //comentario arbitrario
+    [Header("helper")]
     public Rigidbody sphere;
 
     [Header("Componentes")]
     public float gravity = 10.0f;
     public float speed, currentSpeed;
     public float rotate, currentRotate;
+
+    public bool hasPowerup = false; 
+
     public Transform kartNormal;
     public GameObject kartModel; 
     public LayerMask layer; 
@@ -18,12 +26,9 @@ public class Player : MonoBehaviour
     [Header("Parameters")]
     public float acceleration = 30f;
     public float steering = 80f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
+    
+  
     // Update is called once per frame
     void Update()
     {
@@ -32,6 +37,13 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             speed = acceleration; 
+        }
+
+        if (Input.GetKeyDown(KeyCode.X) && hasPowerup)
+        {
+            //activar power up
+            ActivatePowerUp(m_powerUpIndex); 
+            hasPowerup = false; 
         }
 
         transform.position = sphere.transform.position - new Vector3(0, 0.4f, 0);
@@ -70,5 +82,19 @@ public class Player : MonoBehaviour
     void Steer(int dir, float amaount)
     {
         rotate = (steering * dir) * amaount; 
+    }
+
+    public void SetPowerUpIndex(int powerIdex)
+    {
+        hasPowerup = true; 
+        m_powerUpIndex = powerIdex;
+
+    }
+
+    private void ActivatePowerUp(int powerUp)
+    {
+        Instantiate(pwrups[powerUp].gameObject, m_weaponPosition.position, m_weaponPosition.rotation);
+        hasPowerup = false; 
+        m_powerUpIndex = -1; 
     }
 }

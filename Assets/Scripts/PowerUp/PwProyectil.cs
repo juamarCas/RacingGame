@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PwProyectil : MonoBehaviour
+public class PwProyectil : PowerUp
 {
+    [SerializeField] private float m_velocity = 5.0f; 
+
     void Update()
     {
         Destroy(gameObject, 8f);
