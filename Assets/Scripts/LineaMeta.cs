@@ -7,7 +7,7 @@ public class LineaMeta : MonoBehaviour
     //VARIABLES:
 
     int Total_Checks; //VARIABLE PARA DETERMINAR LA CANTIDAD DE CHECKPOINTS QUE TIENE LA PISTA.
-
+    public GameObject Temporal;
     void Start()
     {
         Total_Checks = 3; //seteamos que hay 3 checkpoints;
@@ -33,11 +33,19 @@ public class LineaMeta : MonoBehaviour
 
         if (Verifico_Vuelta_Completa == true)
             {
-                Debug.Log("Ganaste");
+                other.GetComponent<VerificadorVuelta>().VueltaN = other.GetComponent<VerificadorVuelta>().VueltaN + 1;
+                if (other.GetComponent<VerificadorVuelta>().VueltaN > 3)
+                {
+                    Temporal.SetActive(true);
+                }
+                else
+                {
+                    other.GetComponent<VerificadorVuelta>().MostrarVuelta = true;
+                }
             }
             else
             {
-                Debug.Log("Te falta un checkpoint!!!!");
+                if (other.GetComponent<VerificadorVuelta>().VueltaN == 0) other.GetComponent<VerificadorVuelta>().VueltaN = 1;
             }
 
         }

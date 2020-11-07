@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
+    
     [Header ("Numero de Checkpoint")]
     public int Numero_Checkpoint; //DETERMINA EL NUMERO DE CHECKPOINT QUE ES.
 
@@ -21,12 +22,16 @@ public class CheckPoint : MonoBehaviour
             if (Numero_Checkpoint == 0) //pero si soy el cero si o si le asigno.
             {
                 other.gameObject.GetComponent<VerificadorVuelta>().CheckPoints[Numero_Checkpoint] = true;
+                other.gameObject.GetComponent<VerificadorVuelta>().Mostrar_Parcial = true;
+                Borrar.Playme = true;
             }
             else
             {
                 if (other.gameObject.GetComponent<VerificadorVuelta>().CheckPoints[Numero_Checkpoint - 1] == true)
                 {
                     other.gameObject.GetComponent<VerificadorVuelta>().CheckPoints[Numero_Checkpoint] = true;
+                    other.gameObject.GetComponent<VerificadorVuelta>().Mostrar_Parcial = true;
+                    Borrar.Playme = true;
                 }
             }
         }
