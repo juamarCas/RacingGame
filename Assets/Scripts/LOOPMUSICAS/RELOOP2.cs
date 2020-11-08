@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RELOOP : MonoBehaviour
+public class RELOOP2 : MonoBehaviour
 {
-    public AudioClip otherClip;
     AudioSource audioSource;
-    
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -17,7 +16,7 @@ public class RELOOP : MonoBehaviour
     {
         if (!audioSource.isPlaying)
         {
-            audioSource.time = 3.658f;
+            audioSource.time = 9.656f;
             audioSource.Play();
         }
     }
