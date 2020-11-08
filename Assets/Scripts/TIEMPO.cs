@@ -1,6 +1,5 @@
 ﻿
 using UnityEngine;
-using System.Timers;
 using TMPro;
 
 
@@ -20,7 +19,7 @@ public class TIEMPO : MonoBehaviour
 
     void Update()
     {
-        float t = Time.time - StartTime;
+       float t = Time.time - StartTime;
 
         Minutos = ((int)t / 60);
         if (Minutos < 10) MM = "0"; else SS = "";
