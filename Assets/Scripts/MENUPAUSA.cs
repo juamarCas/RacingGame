@@ -93,6 +93,7 @@ public class MENUPAUSA : MonoBehaviour
                         UI_minicamara.SetActive(Prender_Apagar);
                         break;
                     case 2:
+                        APAGAR1.ApagarAqui = false;
                         SceneManager.LoadScene("MENU_PRINCIPAL");
                         break;
                 }

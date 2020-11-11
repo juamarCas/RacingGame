@@ -21,17 +21,24 @@ public class CheckPoint : MonoBehaviour
             //PASO 2: VERIFICO QUE EL ANTERIOR CHECKPOINT ESTE HECHO, SINO NO PUEDO DARLE MI OK.
             if (Numero_Checkpoint == 0) //pero si soy el cero si o si le asigno.
             {
-                other.gameObject.GetComponent<VerificadorVuelta>().CheckPoints[Numero_Checkpoint] = true;
-                other.gameObject.GetComponent<VerificadorVuelta>().Mostrar_Parcial = true;
-                Borrar.Playme = true;
+                if (other.gameObject.GetComponent<VerificadorVuelta>().CheckPoints[Numero_Checkpoint] == false)
+                {
+                    other.gameObject.GetComponent<VerificadorVuelta>().CheckPoints[Numero_Checkpoint] = true;
+                    other.gameObject.GetComponent<VerificadorVuelta>().Mostrar_Parcial = true;
+                    Borrar.Playme = true;
+                    PlaneColider.Portal = this.gameObject;
+                }
             }
             else
             {
                 if (other.gameObject.GetComponent<VerificadorVuelta>().CheckPoints[Numero_Checkpoint - 1] == true)
                 {
-                    other.gameObject.GetComponent<VerificadorVuelta>().CheckPoints[Numero_Checkpoint] = true;
-                    other.gameObject.GetComponent<VerificadorVuelta>().Mostrar_Parcial = true;
-                    Borrar.Playme = true;
+                    if (other.gameObject.GetComponent<VerificadorVuelta>().CheckPoints[Numero_Checkpoint] == false)
+                    {
+                        other.gameObject.GetComponent<VerificadorVuelta>().CheckPoints[Numero_Checkpoint] = true;
+                        other.gameObject.GetComponent<VerificadorVuelta>().Mostrar_Parcial = true;
+                        Borrar.Playme = true;
+                    }
                 }
             }
         }
